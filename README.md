@@ -90,8 +90,8 @@ The assignment deliverable consists of a Github repository containing:
 - an updated answers.yml file containing the details of 
 
 ## Design Requirements
-- Hosts 1-a and 1-b are in two subnets (*Hosts-A* and *Hosts-B*) that must be able to scale up to respectively {{ HostsASubnetRequiredAddresses }} and {{ HostsBSubnetRequiredAddresses }} usable addresses
-- Host 2-c is in a subnet (*Hub*) that needs to accommodate up to {{ HubSubnetRequiredAddresses }} usable addresses
+- Hosts 1-a and 1-b are in two subnets (*Hosts-A* and *Hosts-B*) that must be able to scale up to respectively 166 and 60 usable addresses
+- Host 2-c is in a subnet (*Hub*) that needs to accommodate up to 508 usable addresses
 - Host 2-c must run a docker image (dustnic82/nginx-test) which implements a web-server that must be reachable from Host-1-a and Host-1-b
 - No dynamic routing can be used
 - Routes must be as generic as possible
@@ -118,3 +118,25 @@ The assignment deliverable consists of a Github repository containing:
 
 # Design
 [ Your work goes here ]
+
+We have designed the network as required, by modifying the Vagrantfile in order to use a specific bash file to initiate each component of the network(i.e. host-a, host-b, host-c, router-1, router-2...)
+
+For host-a and host-b have defined an IP address according to the required scalable network and a static routing table.
+
+Switch has been implemented through OVS commands(in order to allow vLan communications), routers (1 and 2) have different interfaces(both real and virtual) with an IP address each.
+
+For the host-c, in addition to same configuration as other hosts, has been installed 'docker.io' to allow the running of a web-server(nginx) inside a container.
+
+To ease the access to the web server from host-a and host-b, the ip address of the host-c has been associated to the name "web-server.eu".
+
+
+	NOTE: to run the web-server(inside the docker's container), avoiding error messages, is necessary to access via SSH the host-c and execute at runtime the following command:
+
+		sudo docker run --name web-server -p 80:80 -d dustnic82/nginx-test
+
+	which is however in the host-c.sh file, commented due to the generation of error messages, even though the web server worked correctly anyway.
+
+
+To check the connectivity and network the commands which have been used are: vagrant status, ping, curl (web-server), tcpdump, traceroute ,docker ps...
+
+ 
