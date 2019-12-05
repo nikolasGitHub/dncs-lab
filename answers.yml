@@ -1,0 +1,18 @@
+FirstName: Nikolas
+LastName: Kotopulis Ostinelli
+MatriculationNumber: 203184
+AcademicYear: 2019-2020
+GitHubUrl: https://github.com/nikolasGitHub/dncs-lab.git
+Subnets:
+  HostsA:
+    RequiredAddresses: 166
+    SubnetAddress: 192.168.0.0 (C)
+    SubnetPrefixLength: 24 (0)
+  HostsB:
+    RequiredAddresses: 60
+    SubnetAddress: 192.168.1.0 (C)
+    SubnetPrefixLength: 26 (2)
+  Hub:
+    RequiredAddresses: 508
+    SubnetAddress: 172.16.0.0 (B)
+    SubnetPrefixLength: 23 (7)
